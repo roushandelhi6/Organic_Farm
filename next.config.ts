@@ -6,11 +6,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Memory/CPU limits for Vercel Free Tier stability
-  experimental: {
-    workerThreads: false,
-    cpus: 1,
-  },
+  // Ensure the project builds cleanly as a standalone app for Netlify
+  output: 'standalone',
 };
 
 export default nextConfig;
