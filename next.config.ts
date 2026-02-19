@@ -17,8 +17,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Suppress turbopack warning as suggested by logs
-  turbopack: {},
+  // Fix for Vercel build worker crashes
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
 };
 
 export default withPWA(nextConfig as any);
