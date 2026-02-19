@@ -6,9 +6,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Force Webpack mode to avoid Turbopack conflicts in Next.js 15/16
-  webpack: (config: any) => {
-    return config;
+  // Memory/CPU limits for Vercel Free Tier stability
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
   },
 };
 
