@@ -8,7 +8,7 @@ const withPWA = withPWAInit({
   skipWaiting: true,
 });
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   transpilePackages: ["next-pwa"],
   typescript: {
     ignoreBuildErrors: true,
@@ -18,4 +18,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPWA(nextConfig);
+export default withPWA(nextConfig as any);
