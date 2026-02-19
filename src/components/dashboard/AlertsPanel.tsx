@@ -24,7 +24,7 @@ export default function AlertsPanel() {
         // Subscribe to new alerts
         const channel = supabase
             ?.channel('public:weather_alerts')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'weather_alerts' }, payload => {
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'weather_alerts' }, (payload: any) => {
                 setAlerts(prev => [payload.new, ...prev].slice(0, 10));
             })
             .subscribe();
