@@ -1,7 +1,11 @@
 'use client';
 
-import { Suspense } from 'react';
-import AlertsPanel from '@/components/dashboard/AlertsPanel';
+import dynamic from 'next/dynamic';
+
+const AlertsPanel = dynamic(() => import('@/components/dashboard/AlertsPanel'), {
+    ssr: false,
+    loading: () => <div className="text-center py-4 text-gray-500">Loading alerts...</div>
+});
 
 export default function Dashboard() {
     return (
