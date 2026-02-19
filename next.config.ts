@@ -22,6 +22,8 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1,
   },
+  // Silence the Turbopack/Webpack conflict warning
+  turbopack: {},
 };
 
 export default withPWA(nextConfig as any);
