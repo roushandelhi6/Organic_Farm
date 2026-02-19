@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
@@ -79,19 +77,6 @@ export default function DashboardLayout({
                     {children}
                 </div>
             </main>
-
-            <style jsx global>{`
-        .sidebar-link {
-          @apply flex items-center gap-3 p-3 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
         </div>
     );
 }
