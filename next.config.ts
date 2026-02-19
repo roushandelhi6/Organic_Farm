@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+// @ts-ignore
 import withPWAInit from "next-pwa";
 
 const withPWA = withPWAInit({
@@ -16,6 +17,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Suppress turbopack warning as suggested by logs
+  turbopack: {},
 };
 
 export default withPWA(nextConfig as any);
