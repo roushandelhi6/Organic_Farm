@@ -86,6 +86,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section id="stats" className="py-24 bg-bg-dark text-white overflow-hidden relative">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl -ml-48 -mb-48"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-4 gap-12 text-center">
+            <div className="space-y-2">
+              <div className="text-5xl font-black text-primary">500+</div>
+              <div className="text-gray-400 font-medium uppercase tracking-widest text-sm">Farmers Empowered</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-5xl font-black text-secondary">10k+</div>
+              <div className="text-gray-400 font-medium uppercase tracking-widest text-sm">Acres Monitored</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-5xl font-black text-blue-400">98%</div>
+              <div className="text-gray-400 font-medium uppercase tracking-widest text-sm">AI Accuracy</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-5xl font-black text-orange-400">24/7</div>
+              <div className="text-gray-400 font-medium uppercase tracking-widest text-sm">Live Monitoring</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-bg-dark text-gray-500 py-12 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">

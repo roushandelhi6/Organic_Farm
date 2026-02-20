@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 
 # Configuration
-WEBHOOK_URL = "http://localhost:3000/api/webhook"
+WEBHOOK_URL = "https://effervescent-meerkat-1d0344.netlify.app/api/webhook"
 SIMULATION_INTERVAL = 600 # 10 minutes in seconds
 FARM_ID = "143c1ab0-116f-470b-b935-ecb52a5dfdfc" # Placeholder
 
