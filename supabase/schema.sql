@@ -1,7 +1,10 @@
 -- Organic Farm Management System Schema
 
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Farmers TABLE
-CREATE TABLE farmers (
+CREATE TABLE IF NOT EXISTS farmers (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
@@ -13,7 +16,7 @@ CREATE TABLE farmers (
 );
 
 -- Farms TABLE
-CREATE TABLE farms (
+CREATE TABLE IF NOT EXISTS farms (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   farmer_id UUID REFERENCES farmers(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
@@ -24,7 +27,7 @@ CREATE TABLE farms (
 );
 
 -- Sensors TABLE
-CREATE TABLE sensors (
+CREATE TABLE IF NOT EXISTS sensors (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   farm_id UUID REFERENCES farms(id) ON DELETE CASCADE,
   sensor_type TEXT NOT NULL, -- 'moisture', 'npk', 'humidity', 'temperature', etc.
@@ -34,7 +37,7 @@ CREATE TABLE sensors (
 );
 
 -- Sensor Readings TABLE (Time-series)
-CREATE TABLE sensor_readings (
+CREATE TABLE IF NOT EXISTS sensor_readings (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   sensor_id UUID REFERENCES sensors(id) ON DELETE CASCADE,
   value DECIMAL NOT NULL,
@@ -44,7 +47,7 @@ CREATE TABLE sensor_readings (
 );
 
 -- Satellite Logs TABLE (NDVI)
-CREATE TABLE satellite_logs (
+CREATE TABLE IF NOT EXISTS satellite_logs (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   farm_id UUID REFERENCES farms(id) ON DELETE CASCADE,
   ndvi_data_json JSONB,
@@ -54,7 +57,7 @@ CREATE TABLE satellite_logs (
 );
 
 -- AI Diagnoses TABLE
-CREATE TABLE ai_diagnoses (
+CREATE TABLE IF NOT EXISTS ai_diagnoses (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   farm_id UUID REFERENCES farms(id) ON DELETE CASCADE,
   image_url TEXT,
@@ -66,7 +69,7 @@ CREATE TABLE ai_diagnoses (
 );
 
 -- Fertilizer Recommendations TABLE
-CREATE TABLE fertilizer_recommendations (
+CREATE TABLE IF NOT EXISTS fertilizer_recommendations (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   diagnosis_id UUID REFERENCES ai_diagnoses(id) ON DELETE CASCADE,
   fertilizer_name TEXT,
@@ -77,7 +80,7 @@ CREATE TABLE fertilizer_recommendations (
 );
 
 -- Weather Alerts TABLE
-CREATE TABLE weather_alerts (
+CREATE TABLE IF NOT EXISTS weather_alerts (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   farm_id UUID REFERENCES farms(id) ON DELETE CASCADE,
   alert_type TEXT, -- 'rain', 'temp', etc.
