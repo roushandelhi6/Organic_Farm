@@ -51,37 +51,37 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
+            <Link href="/dashboard/sensors" className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block group">
+              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v10" /><path d="m16 8-4 4-4-4" /><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /></svg>
               </div>
               <h3 className="text-xl font-bold mb-3">Simulated IoT</h3>
               <p className="text-gray-600">Monitor moisture, NPK, and humidity with virtualized precision.</p>
-            </div>
+            </Link>
 
-            <div className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-              <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-6">
+            <Link href="/dashboard/diagnosis" className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block group">
+              <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 2a9 9 0 1 0 9 9 9 9 0 0 0-9-9Z" /><path d="m21 21-4.3-4.3" /></svg>
               </div>
               <h3 className="text-xl font-bold mb-3">AI Diagnosis</h3>
               <p className="text-gray-600">TensorFlow.js leaf scanning for rust and blight detection.</p>
-            </div>
+            </Link>
 
-            <div className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6">
+            <Link href="/dashboard/ndvi" className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 9a3 3 0 0 1 0 6" /><path d="M22 9a3 3 0 0 0 0 6" /><path d="M12 22a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3" /><path d="M12 2a3 3 0 0 1 3 3h3a3 3 0 0 1 3-3" /><path d="M12 6v12" /><path d="M6 12h12" /></svg>
               </div>
               <h3 className="text-xl font-bold mb-3">NDVI Mapping</h3>
               <p className="text-gray-600">Satellite view of crop health with GEE heatmap overlays.</p>
-            </div>
+            </Link>
 
-            <div className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 mb-6">
+            <Link href="/dashboard/weather" className="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block group">
+              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="M12 12v9" /><path d="m8 17 4 4 4-4" /></svg>
               </div>
               <h3 className="text-xl font-bold mb-3">Weather Alerts</h3>
               <p className="text-gray-600">48-hr forecasts with triggers for heavy rainfall protection.</p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
