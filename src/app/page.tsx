@@ -38,13 +38,13 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="relative z-10 text-center max-w-7xl px-6 -mt-32">
+        <div className="relative z-10 text-center max-w-7xl px-6 pt-32">
           <div className="mb-16">
-            <h1 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-blue-300 drop-shadow-[0_0_15px_rgba(147,197,253,0.5)]">
+            <h1 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-[#D4A853] drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">
               Nurture with <span className="opacity-80">Nature.</span><br />
               Monitor with <span className="opacity-80">Intelligence.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-[#8B4513] max-w-2xl mx-auto leading-relaxed font-bold">
+            <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed font-bold">
               The next generation of organic farming. Real-time IoT monitoring, AI disease detection, and satellite health analytics.
             </p>
           </div>
