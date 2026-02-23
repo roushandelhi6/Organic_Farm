@@ -38,21 +38,54 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="relative z-10 text-center max-w-5xl px-6 pt-20">
-          <h1 className="text-3xl md:text-4xl font-black mb-8 tracking-tight text-blue-300 drop-shadow-[0_0_15px_rgba(147,197,253,0.5)]">
-            Nurture with <span className="opacity-80">Nature.</span><br />
-            Monitor with <span className="opacity-80">Intelligence.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-[#8B4513] mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
-            The next generation of organic farming. Real-time IoT monitoring, AI disease detection, and satellite health analytics in one premium dashboard.
-          </p>
-          <div className="flex justify-center">
-            <Link href="/login" className="btn-primary text-xl px-12 py-5 shadow-2xl">
-              Launch Dashboard
+        <div className="relative z-10 text-center max-w-7xl px-6 -mt-32">
+          <div className="mb-16">
+            <h1 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-blue-300 drop-shadow-[0_0_15px_rgba(147,197,253,0.5)]">
+              Nurture with <span className="opacity-80">Nature.</span><br />
+              Monitor with <span className="opacity-80">Intelligence.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-[#8B4513] max-w-2xl mx-auto leading-relaxed font-bold">
+              The next generation of organic farming. Real-time IoT monitoring, AI disease detection, and satellite health analytics.
+            </p>
+          </div>
+
+          {/* Features integrated into Hero */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <Link href="/dashboard/sensors" className="glass-green p-8 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 group shadow-2xl">
+              <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all shadow-lg mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v10" /><path d="m16 8-4 4-4-4" /><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /></svg>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2">Simulated IoT</h3>
+              <p className="text-white/60 text-sm font-medium">Monitor moisture, NPK, and humidity units.</p>
+            </Link>
+
+            <Link href="/dashboard/diagnosis" className="glass-green p-8 rounded-[2rem] border border-white/10 hover:border-secondary/50 transition-all hover:scale-105 active:scale-95 group shadow-2xl">
+              <div className="w-14 h-14 bg-secondary/20 rounded-2xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white transition-all shadow-lg mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 2a9 9 0 1 0 9 9 9 9 0 0 0-9-9Z" /><path d="m21 21-4.3-4.3" /></svg>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2">AI Diagnosis</h3>
+              <p className="text-white/60 text-sm font-medium">TensorFlow.js leaf scanning detection.</p>
+            </Link>
+
+            <Link href="/dashboard/ndvi" className="glass-green p-8 rounded-[2rem] border border-white/10 hover:border-blue-400/50 transition-all hover:scale-105 active:scale-95 group shadow-2xl">
+              <div className="w-14 h-14 bg-blue-400/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-400 group-hover:text-white transition-all shadow-lg mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 9a3 3 0 0 1 0 6" /><path d="M22 9a3 3 0 0 0 0 6" /><path d="M12 22a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3" /><path d="M12 2a3 3 0 0 1 3 3h3a3 3 0 0 1 3-3" /><path d="M12 6v12" /><path d="M6 12h12" /></svg>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2">NDVI Mapping</h3>
+              <p className="text-white/60 text-sm font-medium">Satellite view of crop health overlays.</p>
+            </Link>
+
+            <Link href="/dashboard/weather" className="glass-green p-8 rounded-[2rem] border border-white/10 hover:border-orange-400/50 transition-all hover:scale-105 active:scale-95 group shadow-2xl">
+              <div className="w-14 h-14 bg-orange-400/20 rounded-2xl flex items-center justify-center text-orange-400 mb-6 group-hover:bg-orange-400 group-hover:text-white transition-all shadow-lg mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="M12 12v9" /><path d="m8 17 4 4 4-4" /></svg>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2">Weather Alerts</h3>
+              <p className="text-white/60 text-sm font-medium">48-hr forecasts with triggers.</p>
             </Link>
           </div>
         </div>
       </header>
+
 
 
       {/* Feature Section */}
