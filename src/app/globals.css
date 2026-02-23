@@ -1,21 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #0d7c66;
-  --primary-dark: #095c4b;
+  --primary: #39ff14;
+  --primary-dark: #2ce010;
   --secondary: #d4a853;
-  --bg-dark: #0a0d0c;
-  /* Earthier dark */
-  --bg-card: rgba(13, 124, 102, 0.1);
-  /* Semi-transparent green */
+  --gold: #FFD700;
+  --bg-dark: #0a120a;
+  --bg-card: rgba(15, 25, 15, 0.7);
   --bg-light: #f5f1eb;
-  --text-primary: #f0ece4;
-  --text-dark: #2d3436;
-  --glass-green: rgba(13, 124, 102, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-dim: #94a3b8;
+  --glass-border: rgba(57, 255, 20, 0.2);
 
-  --background: #0a0d0c;
-  --foreground: #f0ece4;
+  --background: #0a120a;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,12 +30,56 @@ body {
   overflow-x: hidden;
 }
 
-.glass-morphism {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* New Utilities from Reference */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(57, 255, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card:hover {
+  border-color: rgba(57, 255, 20, 0.5);
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.15);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+.serif-italic {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+}
+
+.moving-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: radial-gradient(circle at 2px 2px, #39ff14 1px, transparent 0);
+  background-size: 40px 40px;
+  animation: patternMove 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes patternMove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 500px 500px;
+  }
 }
 
 .glass-green {
