@@ -8,12 +8,16 @@ export default function Home() {
       {/* Background Video Layer */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <iframe
-          className="absolute w-[300%] h-[300%] -top-[100%] -left-[100%] pointer-events-none object-cover"
-          src="https://www.youtube.com/embed/nSgq-DunVRA?autoplay=1&mute=1&controls=0&loop=1&playlist=nSgq-DunVRA&showinfo=0&rel=0&iv_load_policy=3"
-          allow="autoplay; encrypted-media"
-          frameBorder="0"
-        ></iframe>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute min-w-full min-h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <source src="/background_video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       {/* Hero Section */}
