@@ -4,43 +4,52 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <header className="relative h-screen flex items-center justify-center overflow-hidden bg-bg-dark text-text-primary">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent opacity-50 animate-pulse"></div>
-        </div>
+    <div className="min-h-screen flex flex-col relative">
+      {/* Background Video Layer */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <iframe
+          className="absolute w-[300%] h-[300%] -top-[100%] -left-[100%] pointer-events-none object-cover"
+          src="https://www.youtube.com/embed/nSgq-DunVRA?autoplay=1&mute=1&controls=0&loop=1&playlist=nSgq-DunVRA&showinfo=0&rel=0&iv_load_policy=3"
+          allow="autoplay; encrypted-media"
+          frameBorder="0"
+        ></iframe>
+      </div>
 
-        <nav className="absolute top-0 w-full p-6 flex justify-between items-center z-10">
-          <div className="text-2xl font-bold text-primary flex items-center gap-2">
-            <span className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">O</span>
-            OrganicFarm Pro
+      {/* Hero Section */}
+      <header className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-text-primary">
+        <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl glass-green rounded-[2rem] px-8 py-4 flex justify-between items-center z-50 transition-all duration-300">
+          <div className="text-2xl font-black text-white flex items-center gap-3 tracking-tighter cursor-pointer hover:scale-105 transition-transform">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg rotate-12">O</div>
+            OrganicFarm
           </div>
-          <div className="flex gap-8 items-center font-medium">
-            <a href="#features" className="hover:text-primary transition-colors">Features</a>
-            <a href="#stats" className="hover:text-primary transition-colors">Impact</a>
-            <Link href="/login" className="btn-primary">Get Started</Link>
+          <div className="hidden md:flex gap-10 items-center font-bold text-white/80">
+            <a href="#" className="hover:text-primary transition-all">About Us</a>
+            <a href="#" className="hover:text-primary transition-all">Products</a>
+            <a href="#" className="hover:text-primary transition-all">Pricing</a>
+            <a href="#" className="hover:text-primary transition-all">Contact</a>
+            <Link href="/login" className="px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/20 transition-all shadow-xl font-black">
+              Login/Signup
+            </Link>
           </div>
         </nav>
 
-        <div className="relative z-10 text-center max-w-4xl px-4">
-          <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tight">
-            Nurture with <span className="text-primary">Nature.</span><br />
-            Monitor with <span className="text-secondary">Intelligence.</span>
+        <div className="relative z-10 text-center max-w-5xl px-6 pt-20">
+          <h1 className="text-3xl md:text-4xl font-black mb-8 tracking-tight text-blue-300 drop-shadow-[0_0_15px_rgba(147,197,253,0.5)]">
+            Nurture with <span className="opacity-80">Nature.</span><br />
+            Monitor with <span className="opacity-80">Intelligence.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-[#8B4513] mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
             The next generation of organic farming. Real-time IoT monitoring, AI disease detection, and satellite health analytics in one premium dashboard.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/login" className="px-8 py-4 bg-primary text-white rounded-xl text-lg font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-xl">
+          <div className="flex justify-center">
+            <Link href="/login" className="btn-primary text-xl px-12 py-5 shadow-2xl">
               Launch Dashboard
             </Link>
-            <button className="px-8 py-4 bg-transparent border-2 border-gray-700 text-white rounded-xl text-lg font-bold hover:bg-gray-800 transition-all">
-              Watch Demo
-            </button>
           </div>
         </div>
       </header>
+
 
       {/* Feature Section */}
       <section id="features" className="py-24 bg-bg-light text-text-dark">
