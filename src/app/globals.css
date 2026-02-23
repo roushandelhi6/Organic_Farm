@@ -82,6 +82,39 @@ body {
   }
 }
 
+/* New SmartFarm Dashboard Utilities */
+.glass-panel {
+  background: rgba(16, 34, 16, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(19, 236, 19, 0.1);
+}
+
+.ndvi-gradient {
+  background: linear-gradient(90deg, #ff4d4d 0%, #ffd633 50%, #13ec13 100%);
+}
+
+.glow-shadow {
+  box-shadow: 0 0 20px rgba(19, 236, 19, 0.2);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+}
+
 .glass-green {
   background: rgba(13, 124, 102, 0.15);
   backdrop-filter: blur(20px);

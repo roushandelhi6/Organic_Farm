@@ -9,20 +9,20 @@ export default function WeatherContent() {
     useEffect(() => {
         async function fetchWeather() {
             try {
-                const res = await fetch('/api/weather?lat=28.6139&lon=77.2090'); // Default coords
+                const res = await fetch('/api/weather?lat=28.6139&lon=77.2090');
                 const data = await res.json();
-
                 if (data.list) {
-                    const transformed = data.list.slice(0, 8).map((item: any) => ({
+                    const transformed = data.list.slice(0, 12).map((item: any) => ({
                         time: new Date(item.dt * 1000).getHours() + ':00',
                         temp: Math.round(item.main.temp),
                         rain: item.rain ? item.rain['3h'] || 0 : 0,
-                        description: item.weather[0]?.main || 'Clear'
+                        description: item.weather[0]?.main || 'Clear',
+                        icon: item.weather[0]?.icon
                     }));
                     setForecast(transformed);
                 }
             } catch (err) {
-                console.error("Failed to fetch weather", err);
+                console.error("Weather fetch error", err);
             } finally {
                 setLoading(false);
             }
@@ -33,104 +33,100 @@ export default function WeatherContent() {
     const rainAlert = forecast.some(f => f.rain > 5);
 
     return (
-        <div className="space-y-8">
-            <div className="flex justify-between items-center">
-                <div>
-                    <h2 className="text-2xl font-bold">Weather Intel</h2>
-                    <p className="text-gray-400">Hyper-local 48-hour forecast and precision rain alerts.</p>
+        <div className="flex-1 relative flex overflow-hidden">
+            {/* Visual Weather Background */}
+            <div className="absolute inset-0 z-0">
+                <div
+                    className="w-full h-full bg-cover bg-center brightness-[0.4] transition-all duration-1000"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1592210633464-e7db0e5c7b41?auto=format&fit=crop&q=80&w=1600')" }}
+                ></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/40 to-bg-dark pointer-events-none"></div>
+
+                {/* Animated Rain Overlay (Simulated) */}
+                {rainAlert && (
+                    <div className="absolute inset-0 pointer-events-none opacity-20 bg-[url('https://www.transparenttextures.com/patterns/rain.png')] animate-[pulse_2s_infinite]"></div>
+                )}
+            </div>
+
+            {/* Weather Centerpiece */}
+            <div className="absolute top-1/2 left-[calc(40%-200px)] -translate-y-1/2 z-10 text-center">
+                <div className="text-9xl mb-4 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-bounce-slow">
+                    {forecast[0]?.description === 'Rain' ? '🌧️' : '☀️'}
+                </div>
+                <h2 className="text-8xl font-black text-white italic tracking-tighter mb-2">
+                    {forecast[0]?.temp || 32}<span className="text-primary">°</span>
+                </h2>
+                <p className="text-2xl font-black text-white/60 uppercase tracking-[0.4em]">{forecast[0]?.description || 'Partly Sunny'}</p>
+
+                <div className="mt-12 flex gap-12 justify-center">
+                    <div className="text-center">
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Humidity</p>
+                        <p className="text-xl font-black text-white">65%</p>
+                    </div>
+                    <div className="w-px h-10 bg-white/10"></div>
+                    <div className="text-center">
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Wind Speed</p>
+                        <p className="text-xl font-black text-white">12 <span className="text-xs opacity-40">km/h</span></p>
+                    </div>
                 </div>
             </div>
 
-            {rainAlert && (
-                <div className="p-6 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-between text-red-500">
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-red-500/20 rounded-2xl flex items-center justify-center text-red-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="M12 12v9" /><path d="m8 17 4 4 4-4" /></svg>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold">Heavy Rain Alert: &gt; 5mm Predicted</h3>
-                            <p className="text-gray-400 mt-1 font-medium">Expected in approximately 12 hours. Ensure irrigation systems are paused.</p>
-                        </div>
+            {/* Right Side: Forecast Panel */}
+            <aside className="relative z-10 w-[28rem] ml-auto p-6 flex flex-col gap-6">
+                <div className="glass-panel rounded-3xl p-8 flex-1 flex flex-col gap-8 glow-shadow overflow-hidden">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-black text-slate-100 italic">48-Hr Forecast</h3>
+                        <button className="px-4 py-2 bg-primary/10 text-primary text-[10px] font-black rounded-full border border-primary/20 hover:bg-primary/20 transition-all">
+                            REFRESH
+                        </button>
                     </div>
-                    <button className="px-6 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition-colors">
-                        Acknowledge
-                    </button>
-                </div>
-            )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <div className="lg:col-span-1 card flex flex-col items-center justify-center text-center p-12">
-                    <div className="text-6xl mb-4">☀️</div>
-                    <h3 className="text-4xl font-black mb-1">32°C</h3>
-                    <p className="text-gray-400 text-lg mb-8">Partly Sunny</p>
-                    <div className="w-full h-px bg-gray-800 mb-8"></div>
-                    <div className="grid grid-cols-2 gap-8 w-full text-xs uppercase tracking-widest font-bold text-gray-500">
-                        <div>
-                            <p className="mb-1">Wind</p>
-                            <p className="text-white">12 km/h</p>
+                    {rainAlert && (
+                        <div className="p-5 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-4 animate-pulse">
+                            <div className="size-10 bg-red-500 rounded-xl flex items-center justify-center text-white shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-black text-red-500 uppercase tracking-widest">Heavy Rain Incoming</h4>
+                                <p className="text-[10px] text-slate-400 font-bold">Auto-pausing irrigation in 4h</p>
+                            </div>
                         </div>
-                        <div>
-                            <p className="mb-1">Humidity</p>
-                            <p className="text-white">65%</p>
-                        </div>
-                    </div>
-                </div>
+                    )}
 
-                <div className="lg:col-span-3 card p-8 flex flex-col">
-                    <h3 className="text-lg font-bold mb-8">48-Hour Rainfall Forecast</h3>
-                    <div className="flex-1 flex items-end gap-6 overflow-x-auto pb-4">
+                    <div className="flex-1 space-y-3 overflow-y-auto pr-2 custom-scrollbar">
                         {forecast.map((f, i) => (
-                            <div key={i} className="flex flex-col items-center gap-4 group min-w-[80px]">
-                                <div className="relative w-12 flex flex-col justify-end min-h-[160px]">
-                                    <div
-                                        className={`w-full rounded-t-lg transition-all duration-500 ${f.rain > 5 ? 'bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)]' : 'bg-primary/40'}`}
-                                        style={{ height: `${f.rain * 15}px` }}
-                                    ></div>
-                                    {f.rain > 5 && (
-                                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                                            ALERT
-                                        </div>
-                                    )}
+                            <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/20 transition-all group">
+                                <span className="text-sm font-black text-slate-400 w-12">{f.time}</span>
+                                <div className="flex-1 flex items-center gap-4 pl-4 border-l border-white/5">
+                                    <span className="text-xl group-hover:scale-125 transition-transform">{f.description === 'Rain' ? '🌧️' : '☀️'}</span>
+                                    <span className="text-xs font-black text-white/80">{f.description}</span>
                                 </div>
-                                <div className="text-center">
-                                    <p className="text-xs font-bold">{f.rain.toFixed(1)}mm</p>
-                                    <p className="text-[10px] text-gray-500 mt-1">{f.time}</p>
+                                <div className="text-right">
+                                    <p className="text-lg font-black text-white italic">{f.temp}°</p>
+                                    <p className={`text-[9px] font-black uppercase tracking-tighter ${f.rain > 5 ? 'text-red-500' : 'text-primary'}`}>
+                                        {f.rain > 0 ? `${f.rain}mm rain` : 'Dry'}
+                                    </p>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="card p-6 flex items-center gap-6">
-                    <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 16.3c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4Z" /><path d="M12 12h.01" /><path d="M16 12h.01" /><path d="M15 16h.01" /><path d="M15 8h.01" /><path d="M9 20h.01" /><path d="M18 20h.01" /><path d="M18 16h.01" /><path d="M18 8h.01" /><path d="M18 4h.01" /><path d="M15 4h.01" /><path d="M12 4h.01" /><path d="M9 4h.01" /><path d="M6 4h.01" /><path d="M21 12h.01" /><path d="M21 16h.01" /><path d="M21 20h.01" /><path d="M21 8h.01" /><path d="M21 4h.01" /><path d="M3 12h.01" /><path d="M3 16h.01" /><path d="M3 20h.01" /><path d="M3 8h.01" /><path d="M3 4h.01" /></svg>
-                    </div>
-                    <div>
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">Soil Absorption</p>
-                        <p className="text-lg font-bold">Good (High)</p>
-                    </div>
-                </div>
-                <div className="card p-6 flex items-center gap-6">
-                    <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
-                    </div>
-                    <div>
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">UV Index</p>
-                        <p className="text-lg font-bold">Moderate (5.2)</p>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-primary/5 rounded-2xl p-5 border border-primary/10">
+                            <p className="text-[10px] text-slate-400 uppercase font-black mb-1 tracking-widest">UV Index</p>
+                            <p className="text-2xl font-black text-white italic">5.2</p>
+                            <div className="h-1 w-full bg-white/5 rounded-full mt-3">
+                                <div className="h-full w-[52%] bg-yellow-500 rounded-full shadow-[0_0_8px_orange]"></div>
+                            </div>
+                        </div>
+                        <div className="bg-primary/5 rounded-2xl p-5 border border-primary/10">
+                            <p className="text-[10px] text-slate-400 uppercase font-black mb-1 tracking-widest">Absorbency</p>
+                            <p className="text-2xl font-black text-white italic">High</p>
+                            <p className="text-[10px] text-primary font-bold mt-2 italic">Optimal Soil State</p>
+                        </div>
                     </div>
                 </div>
-                <div className="card p-6 flex items-center gap-6">
-                    <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 3.5 3.5L12 20.4l-9.2-9.2a2.5 2.5 0 1 1 3.5-3.5L12 13.4l5.7-5.7z" /></svg>
-                    </div>
-                    <div>
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">Crop Comfort</p>
-                        <p className="text-lg font-bold">Optimal</p>
-                    </div>
-                </div>
-            </div>
+            </aside>
         </div>
     );
 }

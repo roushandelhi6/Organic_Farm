@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Inter, Playfair_Display } from "next/font/google";
+import { Outfit, Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 
@@ -15,6 +15,11 @@ const inter = Inter({
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -35,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} ${inter.variable} ${playfair.variable} antialiased selection:bg-primary/30 font-display`}
+        className={`${outfit.variable} ${inter.variable} ${playfair.variable} ${spaceGrotesk.variable} antialiased selection:bg-primary/30 font-display`}
       >
         <CustomCursor />
         {children}
